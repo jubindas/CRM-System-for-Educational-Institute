@@ -10,12 +10,20 @@ import {
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
 
-import { Home, MapPin, Building2, User, ShieldAlert } from "lucide-react";
+import {
+  Home,
+  MapPin,
+  Building2,
+  User,
+  ShieldAlert,
+  Users,
+} from "lucide-react";
 import Logout from "./Logout";
 
 const adminItems = [
   { title: "Home", url: "/", icon: Home },
   { title: "District", url: "/districts", icon: MapPin },
+  { title: "Sub Admin", url: "/sub-admin", icon: Users },
   { title: "Brances", url: "/brances", icon: Building2 },
   { title: "Students", url: "/students", icon: User },
 ];

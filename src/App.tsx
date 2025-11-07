@@ -8,6 +8,7 @@ import Dashboard from "./pages/Dashboard";
 import Students from "./pages/Students";
 import BranchApplications from "./pages/BranceApplications";
 import StudentApplication from "./pages/StudentApplication";
+import SubAdmins from "./pages/SubAdmins";
 
 const router = createBrowserRouter([
   {
@@ -24,17 +25,17 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <Dashboard />
+        element: <Dashboard />,
       },
       {
         path: "districts",
         element: <Districts />,
       },
-       {
+      {
         path: "brances",
         element: <Brances />,
       },
-       {
+      {
         path: "students",
         element: <Students />,
       },
@@ -45,6 +46,10 @@ const router = createBrowserRouter([
       {
         path: "enquiry-form",
         element: <StudentApplication />,
+      },
+      {
+        path: "sub-admin",
+        element: <SubAdmins />,
       },
     ],
   },

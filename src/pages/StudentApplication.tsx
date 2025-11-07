@@ -84,19 +84,17 @@ export default function StudentApplication() {
         </Sheet>
       </div>
 
-    <div className="mb-8">
-  <div className="flex items-start justify-between">
-    <h2 className="text-3xl font-bold text-gray-800">
-      My Application Status
-    </h2>
+      <div className="mb-8">
+        <div className="flex items-start justify-between">
+          <h2 className="text-3xl font-bold text-gray-800">
+            My Application Status
+          </h2>
 
-    <div className="mr-10 mt-1"> 
-      <AddStudentApplication />
-    </div>
-  </div>
-</div>
-
-
+          <div className="mr-10 mt-1">
+            <AddStudentApplication />
+          </div>
+        </div>
+      </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
         <div className="rounded-2xl p-6 border shadow-sm bg-linear-to-br from-white via-blue-50/40 to-indigo-50/40 hover:shadow-xl transition-all">
