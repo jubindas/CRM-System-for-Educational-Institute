@@ -29,13 +29,19 @@ const adminItems = [
 ];
 
 const studentsItems = [
+  { title: "Home", url: "/", icon: Home },
   { title: "Enquiry Form", url: "/enquiry-form", icon: ShieldAlert },
 ];
 
 const subAdminItems = [
+  { title: "Home", url: "/", icon: Home },
   { title: "Enquiry Form", url: "/student-form-enquiry", icon: ShieldAlert },
   { title: "Brances", url: "/brances", icon: Building2 },
   { title: "Students", url: "/students", icon: User },
+];
+const branchItems = [
+  { title: "Home", url: "/", icon: Home },
+  { title: "Enquiry Form", url: "/student-form-enquiry", icon: ShieldAlert },
 ];
 
 export function AppSidebar() {
@@ -54,6 +60,8 @@ export function AppSidebar() {
         return studentsItems;
       case "sub-admin":
         return subAdminItems;
+      case "branch":
+        return branchItems;
       default:
         return [];
     }
@@ -66,7 +74,7 @@ export function AppSidebar() {
       <SidebarContent className="py-6 bg-zinc-900!">
         <div className="px-6 mb-10 flex items-center space-x-4">
           <img
-            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSHavAqEKhY8MRX7NntKRnkGqFTk42uJT_TuA&s"
+            src="https://i.pinimg.com/736x/b9/e0/e3/b9e0e30ac1ec95077b7e1d0abd250e5d.jpg"
             alt="Avatar"
             className="h-12 w-12 rounded-full border-2 border-zinc-700"
           />
@@ -77,6 +85,8 @@ export function AppSidebar() {
                 ? "Admin"
                 : users.role === "sub-admin"
                 ? "Sub-Admin"
+                : users.role === "branch"
+                ? "Branch" 
                 : "Student"}
             </h2>
           </div>

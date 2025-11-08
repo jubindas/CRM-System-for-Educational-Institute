@@ -34,7 +34,7 @@ export default function Signup() {
     return Object.keys(newErrors).length === 0;
   };
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const handleSignup = (e: React.FormEvent) => {
     e.preventDefault();
@@ -43,9 +43,9 @@ export default function Signup() {
 
     const userData = { name, email, password, role };
     localStorage.setItem("user", JSON.stringify(userData));
-    alert("✅ Signup Successful!");
+    alert(" Signup Successful!");
 
-    navigate("/login")
+    navigate("/login");
 
     setName("");
     setEmail("");
@@ -103,6 +103,7 @@ export default function Signup() {
               <option value="">-- Choose Role --</option>
               <option value="admin">Admin</option>
               <option value="sub-admin">Sub-Admin</option>
+              <option value="branch">Branch</option>
               <option value="student">Student</option>
             </select>
             {errors.role && (

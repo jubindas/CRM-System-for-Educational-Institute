@@ -29,9 +29,8 @@ export default function Login() {
 
     localStorage.setItem("loggedInUser", JSON.stringify(userData));
 
-    if (userData.role === "admin") navigate("/");
-    else if (userData.role === "sub-admin") navigate("/enquiry-form");
-    else navigate("/enquiry-form");
+    if (userData.role === "student") navigate("/enquiry-form");
+    else navigate("/");
   };
 
   return (
