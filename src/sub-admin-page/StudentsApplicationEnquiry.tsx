@@ -1,21 +1,21 @@
-import AddSubAdmin from "@/components/AddSubAdmin";
+import AddStudentApplicationForm from "@/components/AddStudentApplicationForm";
 import { DataTable } from "@/components/data-table";
-import { subAdminColumns } from "@/table-columns/sub-admins";
-import { subAdmins } from "@/table-data/sub-admins";
+import { studentsApplicationFormColumns } from "@/table-columns/students-application-form";
+import { studentsApplications } from "@/table-data/students-application-form";
 
-export default function SubAdmins() {
+export default function StudentsApplicationEnquiry() {
   return (
     <div className="p-6 bg-zinc-100 min-h-screen mt-8">
       <div className="flex flex-wrap justify-between items-center mb-6">
         <h1 className="text-2xl font-semibold text-zinc-800 tracking-tight">
-          Sub Admins
+          Brances
         </h1>
-        <AddSubAdmin />
+        <AddStudentApplicationForm />
       </div>
 
       <DataTable
-        columns={subAdminColumns}
-        data={subAdmins}
+        columns={studentsApplicationFormColumns}
+        data={studentsApplications}
         enablePagination={true}
         filterOptions={{
           enableFilter: true,

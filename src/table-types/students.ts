@@ -3,6 +3,6 @@ export interface Student {
   name: string;
   phone: string;
   district: string;
+  branch: string;
   status: "Enquiry" | "Registered" | "Converted";
-  date: string;
 }

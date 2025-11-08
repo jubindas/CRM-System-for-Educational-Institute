@@ -3,8 +3,17 @@ import type { Student } from "@/table-types/students";
 
 export const studentsColumns: ColumnDef<Student>[] = [
   {
+    accessorKey: "id",
+    header: "ID",
+  },
+  {
     accessorKey: "name",
     header: "Name",
+    cell: ({ row }) => (
+      <span className="font-semibold text-gray-800">
+        {row.getValue("name")}
+      </span>
+    ),
   },
   {
     accessorKey: "phone",
@@ -15,29 +24,42 @@ export const studentsColumns: ColumnDef<Student>[] = [
     header: "District",
   },
   {
+    accessorKey: "branch",
+    header: "Branch",
+  },
+  {
     accessorKey: "status",
     header: "Status",
     cell: ({ row }) => {
-      const status = row.original.status;
-
-      const color =
-        status === "Enquiry"
-          ? "bg-yellow-100 text-yellow-700"
-          : status === "Registered"
-          ? "bg-blue-100 text-blue-700"
-          : "bg-green-100 text-green-700";
+      const status = row.getValue("status") as Student["status"];
+      const colors: Record<Student["status"], string> = {
+        Enquiry: "bg-yellow-100 text-yellow-800",
+        Registered: "bg-blue-100 text-blue-800",
+        Converted: "bg-green-100 text-green-800",
+      };
 
       return (
         <span
-          className={`px-3 py-1 rounded-full text-sm font-semibold ${color}`}
+          className={`px-2 py-1 text-xs rounded-md font-medium ${colors[status]}`}
         >
           {status}
         </span>
       );
     },
   },
+
   {
-    accessorKey: "date",
-    header: "Date",
+    id: "actions",
+    header: "Actions",
+    cell: () => (
+      <div className="flex gap-2">
+        <button className="px-2 py-1 bg-blue-500 text-white rounded">
+          Edit
+        </button>
+        <button className="px-2 py-1 bg-red-500 text-white rounded">
+          Delete
+        </button>
+      </div>
+    ),
   },
 ];

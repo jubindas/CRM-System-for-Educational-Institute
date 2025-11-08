@@ -9,6 +9,7 @@ import Students from "./pages/Students";
 import BranchApplications from "./pages/BranceApplications";
 import StudentApplication from "./pages/StudentApplication";
 import SubAdmins from "./pages/SubAdmins";
+import StudentsApplicationEnquiry from "./sub-admin-page/StudentsApplicationEnquiry";
 
 const router = createBrowserRouter([
   {
@@ -50,6 +51,10 @@ const router = createBrowserRouter([
       {
         path: "sub-admin",
         element: <SubAdmins />,
+      },
+      {
+        path: "student-form-enquiry",
+        element: <StudentsApplicationEnquiry />,
       },
     ],
   },

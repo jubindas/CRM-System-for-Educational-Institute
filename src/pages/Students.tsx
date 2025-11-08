@@ -1,3 +1,4 @@
+import AddStudentDialog from "@/components/AddStudentDialog";
 import { DataTable } from "@/components/data-table";
 import { studentsColumns } from "@/table-columns/students";
 import { studentsData } from "@/table-data/students";
@@ -7,8 +8,9 @@ export default function Students() {
     return <div className="p-6 bg-zinc-100 min-h-screen mt-8">
     <div className="flex flex-wrap justify-between items-center mb-6">
       <h1 className="text-2xl font-semibold text-zinc-800 tracking-tight">
-        Brances
+        Students
       </h1>
+      <AddStudentDialog />
     </div>
 
     <DataTable

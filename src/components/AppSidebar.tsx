@@ -28,8 +28,14 @@ const adminItems = [
   { title: "Students", url: "/students", icon: User },
 ];
 
-const subAdminItems = [
+const studentsItems = [
   { title: "Enquiry Form", url: "/enquiry-form", icon: ShieldAlert },
+];
+
+const subAdminItems = [
+  { title: "Enquiry Form", url: "/student-form-enquiry", icon: ShieldAlert },
+  { title: "Brances", url: "/brances", icon: Building2 },
+  { title: "Students", url: "/students", icon: User },
 ];
 
 export function AppSidebar() {
@@ -45,11 +51,11 @@ export function AppSidebar() {
       case "admin":
         return adminItems;
       case "student":
+        return studentsItems;
+      case "sub-admin":
         return subAdminItems;
       default:
         return [];
-      // case "student":
-      //   return baseItems.filter((item) => item.title !== "Block");
     }
   };
 
@@ -69,7 +75,7 @@ export function AppSidebar() {
             <h2 className="text-lg font-bold text-white">
               {users.role === "admin"
                 ? "Admin"
-                : users.role === "subAdmin"
+                : users.role === "sub-admin"
                 ? "Sub-Admin"
                 : "Student"}
             </h2>
