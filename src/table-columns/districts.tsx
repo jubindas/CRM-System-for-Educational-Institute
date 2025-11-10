@@ -1,4 +1,5 @@
 import type { ColumnDef } from "@tanstack/react-table";
+
 import type { Districts } from "@/table-types/district";
 
 export const districtColumns: ColumnDef<Districts>[] = [

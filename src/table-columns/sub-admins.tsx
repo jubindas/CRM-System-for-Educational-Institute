@@ -1,4 +1,5 @@
 import type { ColumnDef } from "@tanstack/react-table";
+
 import type { SubAdmin } from "@/table-types/sub-admins";
 
 export const subAdminColumns: ColumnDef<SubAdmin>[] = [

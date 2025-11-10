@@ -9,7 +9,9 @@ import {
 } from "@/components/ui/dialog";
 
 import { Label } from "@/components/ui/label";
+
 import { Input } from "@/components/ui/input";
+
 import { Button } from "@/components/ui/button";
 
 import {
@@ -23,12 +25,17 @@ import {
 } from "@/components/ui/select";
 
 export default function AddStudentApplicationForm() {
+
   const [open, setOpen] = useState(false);
 
   const [name, setName] = useState("");
+
   const [phone, setPhone] = useState("");
+
   const [course, setCourse] = useState("");
+
   const [joinedDate, setJoinedDate] = useState("");
+
   const [fees, setFees] = useState("");
 
   const courseList = [
@@ -50,6 +57,7 @@ export default function AddStudentApplicationForm() {
     };
 
     console.log("Student Application Saved (UI Only):", data);
+    
     setOpen(false);
   };
 

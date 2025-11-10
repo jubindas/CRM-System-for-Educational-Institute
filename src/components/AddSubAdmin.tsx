@@ -9,14 +9,19 @@ import {
 } from "@/components/ui/dialog";
 
 import { Label } from "@/components/ui/label";
+
 import { Input } from "@/components/ui/input";
+
 import { Button } from "@/components/ui/button";
 
 export default function AddSubAdmin() {
+
   const [open, setOpen] = useState(false);
 
   const [name, setName] = useState("");
+
   const [email, setEmail] = useState("");
+  
   const [password, setPassword] = useState("");
 
   const handleSave = () => {

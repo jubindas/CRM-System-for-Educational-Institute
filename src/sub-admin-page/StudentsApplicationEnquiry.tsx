@@ -1,6 +1,9 @@
 import AddStudentApplicationForm from "@/components/AddStudentApplicationForm";
+
 import { DataTable } from "@/components/data-table";
+
 import { studentsApplicationFormColumns } from "@/table-columns/students-application-form";
+
 import { studentsApplications } from "@/table-data/students-application-form";
 
 export default function StudentsApplicationEnquiry() {

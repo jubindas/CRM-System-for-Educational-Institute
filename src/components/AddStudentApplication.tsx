@@ -9,7 +9,9 @@ import {
 } from "@/components/ui/dialog";
 
 import { Label } from "@/components/ui/label";
+
 import { Input } from "@/components/ui/input";
+
 import { Button } from "@/components/ui/button";
 
 import {
@@ -23,16 +25,23 @@ import {
 } from "@/components/ui/select";
 
 export default function AddStudentApplication() {
+
   const [open, setOpen] = useState(false);
 
   const [district, setDistrict] = useState("");
+
   const [branch, setBranch] = useState("");
+
   const [studentName, setStudentName] = useState("");
+
   const [email, setEmail] = useState("");
+
   const [phone, setPhone] = useState("");
+
   const [remarks, setRemarks] = useState("");
 
   const districtList = ["Guwahati", "Jorhat", "Dibrugarh", "Tinsukia", "Sivasagar"];
+  
   const branchList = ["Main Branch", "City Branch", "Town Branch", "Center Point"];
 
   const handleSave = () => {

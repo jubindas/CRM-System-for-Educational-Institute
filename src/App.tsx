@@ -1,14 +1,25 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+
 import RootLayout from "./components/RootLayout";
+
 import Signup from "./pages/Signup";
+
 import Login from "./pages/Login";
+
 import Districts from "./pages/Districts";
+
 import Brances from "./pages/Brances";
+
 import Dashboard from "./pages/Dashboard";
+
 import Students from "./pages/Students";
+
 import BranchApplications from "./pages/BranceApplications";
+
 import StudentApplication from "./pages/StudentApplication";
+
 import SubAdmins from "./pages/SubAdmins";
+
 import StudentsApplicationEnquiry from "./sub-admin-page/StudentsApplicationEnquiry";
 
 const router = createBrowserRouter([

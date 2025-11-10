@@ -1,7 +1,9 @@
 import { User } from "lucide-react";
+
 import { SidebarTrigger } from "./ui/sidebar";
 
 export default function Navbar() {
+  
   const users = JSON.parse(localStorage.getItem("loggedInUser") || "{}");
 
   return (

@@ -1,6 +1,9 @@
 import AddStudentDialog from "@/components/AddStudentDialog";
+
 import { DataTable } from "@/components/data-table";
+
 import { studentsColumns } from "@/table-columns/students";
+
 import { studentsData } from "@/table-data/students";
 
 export default function Students() {

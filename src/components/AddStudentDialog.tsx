@@ -10,7 +10,9 @@ import {
 } from "@/components/ui/dialog";
 
 import { Label } from "@/components/ui/label";
+
 import { Input } from "@/components/ui/input";
+
 import { Button } from "@/components/ui/button";
 
 import {
@@ -24,12 +26,17 @@ import {
 } from "@/components/ui/select";
 
 export default function AddStudentDialog() {
+
   const [open, setOpen] = useState(false);
 
   const [name, setName] = useState("");
+
   const [phone, setPhone] = useState("");
+
   const [district, setDistrict] = useState("");
+
   const [branch, setBranch] = useState("");
+
   const [status, setStatus] = useState<
     "Enquiry" | "Registered" | "Converted" | ""
   >("");
@@ -51,7 +58,7 @@ export default function AddStudentDialog() {
 
   const handleSave = () => {
     const newStudent = {
-      id: Math.floor(Math.random() * 10000), // temp ID
+      id: Math.floor(Math.random() * 10000), 
       name,
       phone,
       district,

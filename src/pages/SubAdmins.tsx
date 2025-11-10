@@ -1,6 +1,9 @@
 import AddSubAdmin from "@/components/AddSubAdmin";
+
 import { DataTable } from "@/components/data-table";
+
 import { subAdminColumns } from "@/table-columns/sub-admins";
+
 import { subAdmins } from "@/table-data/sub-admins";
 
 export default function SubAdmins() {

@@ -1,6 +1,9 @@
 import AddDistricts from "@/components/AddDistricts";
+
 import { DataTable } from "@/components/data-table";
+
 import { districtColumns } from "@/table-columns/districts";
+
 import { districtData } from "@/table-data/districts";
 
 export default function Districts() {

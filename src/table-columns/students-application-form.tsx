@@ -1,5 +1,7 @@
 import type { ColumnDef } from "@tanstack/react-table";
+
 import type { StudentsApplicationForm } from "@/table-types/students-application";
+
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
 export const studentsApplicationFormColumns: ColumnDef<StudentsApplicationForm>[] = [

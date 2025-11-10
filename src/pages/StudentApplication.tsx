@@ -17,6 +17,7 @@ import {
 } from "@/components/ui/sheet";
 
 import { Button } from "@/components/ui/button";
+
 import AddStudentApplication from "@/components/AddStudentApplication";
 
 export default function StudentApplication() {
@@ -43,7 +44,7 @@ export default function StudentApplication() {
 
   return (
     <div className="relative p-6 min-h-screen bg-linear-to-br from-indigo-50 via-white to-pink-50">
-      {/* ✅ Bell Notification Sheet */}
+    
       <div className="absolute top-6 right-6">
         <Sheet>
           <SheetTrigger asChild>

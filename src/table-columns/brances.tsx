@@ -1,5 +1,7 @@
 import type { ColumnDef } from "@tanstack/react-table";
+
 import type { Brances } from "@/table-types/brances";
+
 import BranceDropdown from "@/table-columns-dropdown/BranceDropdown";
 
 export const branchColumns: ColumnDef<Brances>[] = [

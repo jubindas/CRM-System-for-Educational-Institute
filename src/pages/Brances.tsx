@@ -1,6 +1,9 @@
 import AddBrances from "@/components/AddBrances";
+
 import { DataTable } from "@/components/data-table";
+
 import { branchColumns } from "@/table-columns/brances";
+
 import { branchData } from "@/table-data/brances";
 
 export default function Brances() {

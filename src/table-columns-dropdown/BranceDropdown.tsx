@@ -25,6 +25,7 @@ import { MoreHorizontal, Edit, Trash2, FileBadge } from "lucide-react";
 
 export default function BranceDropdown({ rowData }: any) {
   console.log("the row data", rowData);
+
   const [openDialog, setOpenDialog] = useState(false);
 
   const navigate = useNavigate();

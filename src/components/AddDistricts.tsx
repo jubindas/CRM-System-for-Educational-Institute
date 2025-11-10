@@ -18,6 +18,7 @@ export default function AddDistricts() {
   const [open, setOpen] = useState(false);
 
   const [districtName, setDistrictName] = useState("");
+  
   const [stateName, setStateName] = useState("");
 
   const handleSave = () => {

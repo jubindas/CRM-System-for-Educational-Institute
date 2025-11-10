@@ -7,6 +7,7 @@ import {
 } from "lucide-react";
 
 export default function BranchApplications() {
+  
   const applications = [
     {
       id: 1,
