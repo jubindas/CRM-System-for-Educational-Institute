@@ -22,6 +22,8 @@ import SubAdmins from "./pages/SubAdmins";
 
 import StudentsApplicationEnquiry from "./sub-admin-page/StudentsApplicationEnquiry";
 
+import StudentHomePage from "./pages/StudentHomePage";
+
 const router = createBrowserRouter([
   {
     path: "login",
@@ -63,6 +65,11 @@ const router = createBrowserRouter([
         path: "sub-admin",
         element: <SubAdmins />,
       },
+      {
+        path: "student-home",
+        element: <StudentHomePage />,
+      },
+
       {
         path: "student-form-enquiry",
         element: <StudentsApplicationEnquiry />,

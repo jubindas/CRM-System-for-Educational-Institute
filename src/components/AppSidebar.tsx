@@ -34,7 +34,7 @@ const adminItems = [
 ];
 
 const studentsItems = [
-  { title: "Home", url: "/", icon: Home },
+  { title: "Home", url: "/student-home", icon: Home },
 
   { title: "Enquiry Form", url: "/enquiry-form", icon: ShieldAlert },
 ];

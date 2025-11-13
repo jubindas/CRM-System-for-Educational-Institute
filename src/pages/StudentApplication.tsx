@@ -1,24 +1,4 @@
-import {
-  Bell,
-  CalendarDays,
-  MapPin,
-  Phone,
-  ClipboardList,
-  Clock,
-} from "lucide-react";
-
-import {
-  Sheet,
-  SheetContent,
-  SheetDescription,
-  SheetHeader,
-  SheetTitle,
-  SheetTrigger,
-} from "@/components/ui/sheet";
-
-import { Button } from "@/components/ui/button";
-
-import AddStudentApplication from "@/components/AddStudentApplication";
+import { CalendarDays, MapPin, Phone, ClipboardList } from "lucide-react";
 
 export default function StudentApplication() {
   const application = {
@@ -44,56 +24,13 @@ export default function StudentApplication() {
 
   return (
     <div className="relative p-6 min-h-screen bg-linear-to-br from-indigo-50 via-white to-pink-50">
-    
-      <div className="absolute top-6 right-6">
-        <Sheet>
-          <SheetTrigger asChild>
-            <Button
-              variant="ghost"
-              className="p-2 h-10 w-10 rounded-full transition"
-            >
-              <Bell className="size-7" />
-            </Button>
-          </SheetTrigger>
-
-          <SheetContent
-            side="right"
-            className="w-[380px] sm:w-[420px] bg-white"
-          >
-            <SheetHeader>
-              <SheetTitle className="text-lg">Notifications</SheetTitle>
-              <SheetDescription>
-                All updates regarding your enquiry & application.
-              </SheetDescription>
-            </SheetHeader>
-
-            <div className="mt-6 space-y-4">
-              {application.notifications.map((note) => (
-                <div
-                  key={note.id}
-                  className="p-4 w-80 ml-8 rounded-xl bg-white shadow flex items-start gap-3 border border-gray-200"
-                >
-                  <Clock className="h-5 w-5 text-indigo-500 mt-1" />
-                  <div>
-                    <p className="text-gray-800 font-medium">{note.message}</p>
-                    <p className="text-xs text-gray-500 mt-1">{note.time}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </SheetContent>
-        </Sheet>
-      </div>
-
       <div className="mb-8">
         <div className="flex items-start justify-between">
           <h2 className="text-3xl font-bold text-gray-800">
             My Application Status
           </h2>
 
-          <div className="mr-10 mt-1">
-            <AddStudentApplication />
-          </div>
+          <div className="mr-10 mt-1"></div>
         </div>
       </div>
 
