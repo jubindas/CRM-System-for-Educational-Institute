@@ -13,7 +13,7 @@ export default function Brances() {
         <h1 className="text-2xl font-semibold text-zinc-800 tracking-tight">
           Brances
         </h1>
-        <AddBrances />
+        <AddBrances mode ="create"/>
       </div>
 
       <DataTable

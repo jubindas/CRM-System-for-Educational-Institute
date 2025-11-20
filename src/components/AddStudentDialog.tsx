@@ -25,8 +25,12 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 
-export default function AddStudentDialog() {
+type Props = {
+  mode: "create" | "edit";
+  trigger?: React.ReactNode;
+};
 
+export default function AddStudentDialog({ mode, trigger }: Props) {
   const [open, setOpen] = useState(false);
 
   const [name, setName] = useState("");
@@ -58,7 +62,7 @@ export default function AddStudentDialog() {
 
   const handleSave = () => {
     const newStudent = {
-      id: Math.floor(Math.random() * 10000), 
+      id: Math.floor(Math.random() * 10000),
       name,
       phone,
       district,
@@ -73,9 +77,11 @@ export default function AddStudentDialog() {
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <Button className="bg-zinc-800 text-white hover:bg-zinc-700">
-          Add Student
-        </Button>
+        {trigger || (
+          <Button className="bg-zinc-800 text-white hover:bg-zinc-700">
+            {mode === "create" ? "Add Student" : "Edit Student"}
+          </Button>
+        )}
       </DialogTrigger>
 
       <DialogContent className="sm:max-w-[500px] bg-white text-zinc-900 border border-zinc-200 shadow-md rounded-xl p-6">

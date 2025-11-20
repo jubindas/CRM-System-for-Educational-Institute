@@ -1,6 +1,7 @@
 import type { ColumnDef } from "@tanstack/react-table";
 
 import type { Districts } from "@/table-types/district";
+import AddDistricts from "@/components/AddDistricts";
 
 export const districtColumns: ColumnDef<Districts>[] = [
   {
@@ -26,12 +27,17 @@ export const districtColumns: ColumnDef<Districts>[] = [
 
       return (
         <div className="flex gap-2">
-          <button
-            onClick={() => console.log("Edit:", district.id)}
-            className="px-3 py-1 text-xs bg-blue-600 text-white rounded hover:bg-blue-700"
-          >
-            Edit
-          </button>
+          <AddDistricts
+            mode="edit"
+            trigger={
+              <button
+                onClick={() => console.log("Edit:", district.id)}
+                className="px-3 py-1 text-xs bg-blue-600 text-white rounded hover:bg-blue-700"
+              >
+                Edit
+              </button>
+            }
+          />
 
           <button
             onClick={() => console.log("Delete:", district.id)}

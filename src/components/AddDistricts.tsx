@@ -14,11 +14,16 @@ import { Input } from "@/components/ui/input";
 
 import { Button } from "@/components/ui/button";
 
-export default function AddDistricts() {
+type Props = {
+  mode: "create" | "edit";
+  trigger?: React.ReactNode;
+};
+
+export default function AddDistricts({ mode, trigger }: Props) {
   const [open, setOpen] = useState(false);
 
   const [districtName, setDistrictName] = useState("");
-  
+
   const [stateName, setStateName] = useState("");
 
   const handleSave = () => {
@@ -33,9 +38,11 @@ export default function AddDistricts() {
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <Button className="bg-zinc-800 text-white hover:bg-zinc-700">
-          Add District
-        </Button>
+        {trigger || (
+          <Button className="bg-zinc-800 text-white hover:bg-zinc-700">
+            {mode === "create" ? "Add District" : "Edit District"}
+          </Button>
+        )}
       </DialogTrigger>
 
       <DialogContent className="sm:max-w-[500px] bg-white text-zinc-900 border border-zinc-200 shadow-md rounded-xl p-6">

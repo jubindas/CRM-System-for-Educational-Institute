@@ -24,6 +24,8 @@ import StudentHomePage from "./pages/StudentHomePage";
 
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
+import { AuthProvider } from "./context/AuthProvider";
+
 const router = createBrowserRouter([
   {
     path: "/login",
@@ -65,7 +67,6 @@ const router = createBrowserRouter([
         path: "student-home",
         element: <StudentHomePage />,
       },
-
       {
         path: "student-form-enquiry",
         element: <StudentsApplicationEnquiry />,
@@ -79,7 +80,9 @@ const queryClient = new QueryClient();
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <RouterProvider router={router} />
+      <AuthProvider>
+        <RouterProvider router={router} />
+      </AuthProvider>
     </QueryClientProvider>
   );
 }

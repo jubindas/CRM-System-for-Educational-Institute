@@ -20,6 +20,7 @@ import {
 } from "@/components/ui/alert-dialog";
 
 import { MoreHorizontal, Edit, Trash2 } from "lucide-react";
+import AddBrances from "@/components/AddBrances";
 
 export default function BranceDropdown({ rowData }: any) {
   console.log("the row data", rowData);
@@ -44,13 +45,18 @@ export default function BranceDropdown({ rowData }: any) {
           className="w-48 p-2 bg-white border border-zinc-200 shadow-lg rounded-md"
         >
           <div className="flex flex-col space-y-1">
-            <Button
-              variant="ghost"
-              className="justify-start text-left text-sm hover:bg-zinc-100 w-full text-zinc-700"
-            >
-              <Edit className="h-4 w-4 mr-2 text-zinc-700" />
-              Edit
-            </Button>
+            <AddBrances
+              mode="edit"
+              trigger={
+                <Button
+                  variant="ghost"
+                  className="justify-start text-left text-sm hover:bg-zinc-100 w-full text-zinc-700"
+                >
+                  <Edit className="h-4 w-4 mr-2 text-zinc-700" />
+                  Edit
+                </Button>
+              }
+            />
 
             <Button
               variant="ghost"
