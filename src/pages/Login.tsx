@@ -2,16 +2,15 @@ import { Eye, EyeOff } from "lucide-react";
 
 import { useState } from "react";
 
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function Login() {
-
   const navigate = useNavigate();
 
   const [email, setEmail] = useState("");
 
   const [password, setPassword] = useState("");
-  
+
   const [showPassword, setShowPassword] = useState(false);
 
   const [error, setError] = useState("");
@@ -34,7 +33,7 @@ export default function Login() {
 
     localStorage.setItem("loggedInUser", JSON.stringify(userData));
 
-    if (userData.role === "student") navigate("/enquiry-form");
+    if (userData.role === "student") navigate("/student-home");
     else navigate("/");
   };
 
@@ -86,9 +85,9 @@ export default function Login() {
 
           <p className="text-center text-sm text-gray-600">
             Don't have an account?{" "}
-            <a href="/signup" className="text-blue-600 hover:underline">
+            <Link to="/signup" className="text-blue-600 hover:underline">
               Signup
-            </a>
+            </Link>
           </p>
         </form>
       </div>

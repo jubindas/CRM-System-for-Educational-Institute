@@ -19,16 +19,12 @@ import {
   AlertDialogTitle,
 } from "@/components/ui/alert-dialog";
 
-import { useNavigate } from "react-router-dom";
-
-import { MoreHorizontal, Edit, Trash2, FileBadge } from "lucide-react";
+import { MoreHorizontal, Edit, Trash2 } from "lucide-react";
 
 export default function BranceDropdown({ rowData }: any) {
   console.log("the row data", rowData);
 
   const [openDialog, setOpenDialog] = useState(false);
-
-  const navigate = useNavigate();
 
   return (
     <>
@@ -63,15 +59,6 @@ export default function BranceDropdown({ rowData }: any) {
             >
               <Trash2 className="h-4 w-4 mr-2 text-red-600" />
               Delete
-            </Button>
-
-            <Button
-              variant="ghost"
-              className="justify-start text-left text-sm hover:bg-zinc-100 w-full text-zinc-700"
-              onClick={() => navigate("/review-applications")}
-            >
-              <FileBadge className="h-4 w-4 mr-2 text-zinc-700" />
-              Applications
             </Button>
           </div>
         </PopoverContent>

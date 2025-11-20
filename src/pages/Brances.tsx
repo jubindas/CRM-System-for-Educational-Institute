@@ -23,7 +23,7 @@ export default function Brances() {
         filterOptions={{
           enableFilter: true,
           filterPlaceholder: "Search Schools...",
-          filterCol: "center_name",
+          filterCol: "branceName",
         }}
       />
     </div>

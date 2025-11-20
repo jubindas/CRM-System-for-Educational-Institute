@@ -14,8 +14,6 @@ import Dashboard from "./pages/Dashboard";
 
 import Students from "./pages/Students";
 
-import BranchApplications from "./pages/BranceApplications";
-
 import StudentApplication from "./pages/StudentApplication";
 
 import SubAdmins from "./pages/SubAdmins";
@@ -24,13 +22,15 @@ import StudentsApplicationEnquiry from "./sub-admin-page/StudentsApplicationEnqu
 
 import StudentHomePage from "./pages/StudentHomePage";
 
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+
 const router = createBrowserRouter([
   {
-    path: "login",
+    path: "/login",
     element: <Login />,
   },
   {
-    path: "signup",
+    path: "/signup",
     element: <Signup />,
   },
   {
@@ -54,10 +54,6 @@ const router = createBrowserRouter([
         element: <Students />,
       },
       {
-        path: "review-applications",
-        element: <BranchApplications />,
-      },
-      {
         path: "enquiry-form",
         element: <StudentApplication />,
       },
@@ -78,8 +74,14 @@ const router = createBrowserRouter([
   },
 ]);
 
+const queryClient = new QueryClient();
+
 function App() {
-  return <RouterProvider router={router} />;
+  return (
+    <QueryClientProvider client={queryClient}>
+      <RouterProvider router={router} />
+    </QueryClientProvider>
+  );
 }
 
 export default App;

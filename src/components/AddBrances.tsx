@@ -19,13 +19,11 @@ import {
   SelectContent,
   SelectGroup,
   SelectItem,
-  SelectLabel,
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
 
 export default function AddBrances() {
-
   const [open, setOpen] = useState(false);
 
   const [district, setDistrict] = useState("");
@@ -38,6 +36,8 @@ export default function AddBrances() {
 
   const [remarks, setRemarks] = useState("");
 
+  const [subAdmin, setSubAdmin] = useState("");
+
   const districtList = [
     "Guwahati",
     "Jorhat",
@@ -49,14 +49,21 @@ export default function AddBrances() {
     "Sivasagar",
   ];
 
+  const subAdminList = [
+    "jubin das",
+    "raja babu",
+    "riddhi sahu",
+    "wahid rohman",
+  ];
+
   const handleSave = () => {
-    
     console.log("Branch saved (UI only):", {
       district,
       branceName,
       email,
       password,
       remarks,
+      subAdmin,
     });
 
     setOpen(false);
@@ -85,8 +92,6 @@ export default function AddBrances() {
 
               <SelectContent className="bg-white">
                 <SelectGroup>
-                  <SelectLabel>Districts</SelectLabel>
-
                   {districtList.map((dist) => (
                     <SelectItem key={dist} value={dist}>
                       {dist}
@@ -105,6 +110,25 @@ export default function AddBrances() {
               onChange={(e) => setBranceName(e.target.value)}
               className="bg-zinc-50 text-zinc-900 border border-zinc-300"
             />
+          </div>
+
+          <div className="grid gap-2">
+            <Label className="text-zinc-700">Assign Sub Admin</Label>
+            <Select onValueChange={setSubAdmin}>
+              <SelectTrigger className="w-full border border-zinc-300 bg-zinc-50">
+                <SelectValue placeholder="Select District" />
+              </SelectTrigger>
+
+              <SelectContent className="bg-white">
+                <SelectGroup>
+                  {subAdminList.map((s) => (
+                    <SelectItem key={s} value={s}>
+                      {s}
+                    </SelectItem>
+                  ))}
+                </SelectGroup>
+              </SelectContent>
+            </Select>
           </div>
 
           <div className="grid gap-2">
