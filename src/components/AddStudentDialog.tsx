@@ -70,7 +70,7 @@ export default function AddStudentDialog({ mode, trigger }: Props) {
       status,
     };
 
-    console.log("Student Saved (UI Only):", newStudent);
+    console.log("Student Saved :", newStudent);
     setOpen(false);
   };
 

@@ -25,6 +25,8 @@ import Logout from "./Logout";
 const adminItems = [
   { title: "Home", url: "/", icon: Home },
 
+  { title: "State", url: "/state", icon: MapPin },
+
   { title: "District", url: "/districts", icon: MapPin },
 
   { title: "Sub Admin", url: "/sub-admin", icon: Users },
@@ -48,7 +50,6 @@ const subAdminItems = [
   { title: "Brances", url: "/brances", icon: Building2 },
 
   { title: "Students", url: "/students", icon: User },
-
 ];
 const branchItems = [
   { title: "Home", url: "/", icon: Home },
@@ -57,10 +58,11 @@ const branchItems = [
 ];
 
 export function AppSidebar() {
-
   const location = useLocation();
 
-  const users = JSON.parse(localStorage.getItem("loggedInUser") || "{}") || { role: null };
+  const users = JSON.parse(localStorage.getItem("loggedInUser") || "{}") || {
+    role: null,
+  };
 
   const getMenuItems = () => {
     switch (users.role) {
@@ -76,8 +78,6 @@ export function AppSidebar() {
         return [];
     }
   };
-
-  
 
   const menuItems = getMenuItems();
 
@@ -98,7 +98,7 @@ export function AppSidebar() {
                 : users.role === "sub-admin"
                 ? "Sub-Admin"
                 : users.role === "branch"
-                ? "Branch" 
+                ? "Branch"
                 : "Student"}
             </h2>
           </div>

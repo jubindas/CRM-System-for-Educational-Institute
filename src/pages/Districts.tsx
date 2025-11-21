@@ -13,7 +13,7 @@ export default function Districts() {
         <h1 className="text-2xl font-semibold text-zinc-800 tracking-tight">
           Districts
         </h1>
-        <AddDistricts />
+        <AddDistricts mode="create" />
       </div>
 
       <DataTable

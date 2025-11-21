@@ -26,6 +26,8 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 import { AuthProvider } from "./context/AuthProvider";
 
+import State from "./pages/State";
+
 const router = createBrowserRouter([
   {
     path: "/login",
@@ -42,6 +44,10 @@ const router = createBrowserRouter([
       {
         index: true,
         element: <Dashboard />,
+      },
+      {
+        path: "state",
+        element: <State />,
       },
       {
         path: "districts",
