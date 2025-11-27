@@ -21,3 +21,30 @@ export const addStates = async (stateData: { name: string }) => {
 
   return res.data.data;
 };
+
+export const updateState = async (stateData: { id: number; name: string }) => {
+  const res = await axios.put(
+    `${API_BASE_URL}/states/${stateData.id}`,
+    stateData
+  );
+
+  if (res.status !== 200) {
+    throw new Error("something went wrong");
+  }
+
+  return res.data.data;
+};
+
+export const togggleState = async (id: number, is_active: boolean) => {
+  const res = await axios.patch(
+    `${API_BASE_URL}/states/${id}/status`,
+    { is_active: !is_active }
+  );
+
+  if (res.status !== 200) {
+    throw new Error("something went wrong");
+  }
+
+  return res.data.data;
+};
+

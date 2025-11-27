@@ -10,12 +10,17 @@ export const branchColumns: ColumnDef<Brances>[] = [
     header: "ID",
   },
   {
-    accessorKey: "districtId",
-    header: "District",
+    accessorKey: "branch",
+    header: "Branch Name",
   },
   {
-    accessorKey: "branceName",
-    header: "Branch Name",
+    accessorKey: "district",
+    header: "District",
+  },
+
+  {
+    accessorKey: "state",
+    header: "Remarks",
   },
   {
     accessorKey: "email",
@@ -30,12 +35,12 @@ export const branchColumns: ColumnDef<Brances>[] = [
     },
   },
   {
-    accessorKey: "remarks",
+    accessorKey: "remark",
     header: "Remarks",
   },
   {
     id: "actions",
     header: "Actions",
-    cell: ({ row }) => <BranceDropdown rowData={row.original}/>
+    cell: ({ row }) => <BranceDropdown rowData={row.original} />,
   },
 ];

@@ -1,5 +1,7 @@
 export type Districts = {
-    id: string;
-    name: string;
-    state: string;
+  id: string;
+  district: string;
+  state: string;
+  state_id: string;
+  is_active: boolean;
 };

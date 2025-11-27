@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import {
   Dialog,
@@ -7,6 +7,8 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
+
+import { Eye, EyeOff } from "lucide-react";
 
 import { Label } from "@/components/ui/label";
 
@@ -23,12 +25,29 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 
+import { getAllDist } from "@/service/apiDistrict";
+
+import type { Districts } from "@/table-types/district";
+
+import { useMutation, useQuery } from "@tanstack/react-query";
+
+import { addBranch } from "@/service/apiBranch";
+
+type BranchData = {
+  district_id: number;
+  name: string;
+  email: string;
+  password: string;
+  remark: string;
+};
+
 type Props = {
   mode: "create" | "edit";
   trigger?: React.ReactNode;
+  rowData?: BranchData;
 };
 
-export default function AddBrances({ mode, trigger }: Props) {
+export default function AddBrances({ mode, trigger, rowData }: Props) {
   const [open, setOpen] = useState(false);
 
   const [district, setDistrict] = useState("");
@@ -37,40 +56,67 @@ export default function AddBrances({ mode, trigger }: Props) {
 
   const [email, setEmail] = useState("");
 
-  const [password, setPassword] = useState("");
-
   const [remarks, setRemarks] = useState("");
 
-  const [subAdmin, setSubAdmin] = useState("");
+  const [off, setOff] = useState(false);
 
-  const districtList = [
-    "Guwahati",
-    "Jorhat",
-    "Dibrugarh",
-    "Tinsukia",
-    "Silchar",
-    "Tezpur",
-    "Nagaon",
-    "Sivasagar",
-  ];
+  const { data: districtList } = useQuery({
+    queryKey: ["districts"],
+    queryFn: getAllDist,
+  });
 
-  const subAdminList = [
-    "jubin das",
-    "raja babu",
-    "riddhi sahu",
-    "wahid rohman",
-  ];
+  function generateUniqueEmail(branchName: string, domain = "email.com") {
+    let cleaned = branchName.toLowerCase();
+
+    cleaned = cleaned.replace(/[^a-z0-9]/g, "");
+
+    const randomNum = Math.floor(1000 + Math.random() * 9000);
+
+    return `${cleaned}${randomNum}@${domain}`;
+  }
+
+  useEffect(() => {
+    if (mode === "edit" && rowData) {
+      setDistrict(String(rowData.district_id));
+      setBranceName(rowData.name);
+      setEmail(rowData.email);
+      setRemarks(rowData.remark);
+    }
+  }, [mode, rowData]);
+
+  const createMutateion = useMutation({
+    mutationFn: (data: BranchData) => addBranch(data),
+    onSuccess: () => {
+      console.log("Branch added successfully");
+    },
+    onError: () => {
+      console.log("Error adding branch");
+    },
+  });
 
   const handleSave = () => {
+    const createPaylode = {
+      district_id: Number(district),
+      name: branceName,
+      email: generateUniqueEmail(email),
+      password: "password",
+      remark: remarks,
+    };
+    if (mode === "create") {
+      createMutateion.mutate(createPaylode);
+    }
     console.log("Branch saved (UI only):", {
       district,
       branceName,
-      email,
-      password,
+      email: generateUniqueEmail(email),
+      password: "password",
       remarks,
-      subAdmin,
     });
 
+    setDistrict("");
+    setBranceName("");
+    setEmail("");
+    setRemarks("");
     setOpen(false);
   };
 
@@ -99,9 +145,9 @@ export default function AddBrances({ mode, trigger }: Props) {
 
               <SelectContent className="bg-white">
                 <SelectGroup>
-                  {districtList.map((dist) => (
-                    <SelectItem key={dist} value={dist}>
-                      {dist}
+                  {districtList.map((dist: Districts) => (
+                    <SelectItem key={dist.id} value={dist.id}>
+                      {dist.district}
                     </SelectItem>
                   ))}
                 </SelectGroup>
@@ -120,25 +166,6 @@ export default function AddBrances({ mode, trigger }: Props) {
           </div>
 
           <div className="grid gap-2">
-            <Label className="text-zinc-700">Assign Sub Admin</Label>
-            <Select onValueChange={setSubAdmin}>
-              <SelectTrigger className="w-full border border-zinc-300 bg-zinc-50">
-                <SelectValue placeholder="Select District" />
-              </SelectTrigger>
-
-              <SelectContent className="bg-white">
-                <SelectGroup>
-                  {subAdminList.map((s) => (
-                    <SelectItem key={s} value={s}>
-                      {s}
-                    </SelectItem>
-                  ))}
-                </SelectGroup>
-              </SelectContent>
-            </Select>
-          </div>
-
-          <div className="grid gap-2">
             <Label className="text-zinc-700">Email</Label>
             <Input
               placeholder="Enter Email"
@@ -150,13 +177,24 @@ export default function AddBrances({ mode, trigger }: Props) {
 
           <div className="grid gap-2">
             <Label className="text-zinc-700">Password</Label>
-            <Input
-              type="password"
-              placeholder="Enter Password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              className="bg-zinc-50 text-zinc-900 border border-zinc-300"
-            />
+
+            <div className="relative">
+              <Input
+                type={off ? "password" : "text"}
+                placeholder="Enter Password"
+                value="password"
+                readOnly
+                className="bg-zinc-50 text-zinc-900 border border-zinc-300 pr-10"
+              />
+
+              <button
+                type="button"
+                onClick={() => setOff(!off)}
+                className="absolute inset-y-0 right-3 flex items-center text-zinc-600"
+              >
+                {off ? <EyeOff size={18} /> : <Eye size={18} />}
+              </button>
+            </div>
           </div>
 
           <div className="grid gap-2">

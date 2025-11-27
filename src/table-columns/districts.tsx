@@ -2,7 +2,7 @@ import type { ColumnDef } from "@tanstack/react-table";
 
 import type { Districts } from "@/table-types/district";
 
-import AddDistricts from "@/components/AddDistricts";
+import ActionDistDropdown from "@/table-columns-dropdown/ActionDistDropdown";
 
 export const districtColumns: ColumnDef<Districts>[] = [
   {
@@ -11,9 +11,9 @@ export const districtColumns: ColumnDef<Districts>[] = [
     cell: ({ row }) => <span>{row.original.id}</span>,
   },
   {
-    accessorKey: "name",
+    accessorKey: "district",
     header: "District Name",
-    cell: ({ row }) => <span>{row.original.name}</span>,
+    cell: ({ row }) => <span>{row.original.district}</span>,
   },
   {
     accessorKey: "state",
@@ -21,40 +21,26 @@ export const districtColumns: ColumnDef<Districts>[] = [
     cell: ({ row }) => <span>{row.original.state}</span>,
   },
   {
+    accessorKey: "is_active",
+    header: "Status",
+    cell: ({ row }) => {
+      const status = row.original.is_active;
+      return status === false ? (
+        <span className="bg-red-500 rounded-2xl px-2 py-1 text-white text-xs">
+          deactive
+        </span>
+      ) : (
+        <span className="bg-green-500 rounded-2xl px-2 py-1 text-white text-xs">
+          active
+        </span>
+      );
+    },
+  },
+  {
     id: "actions",
     header: "Actions",
     cell: ({ row }) => {
-      const district = row.original;
-
-      return (
-        <div className="flex gap-2">
-          <AddDistricts
-            mode="edit"
-            trigger={
-              <button
-                onClick={() => console.log("Edit:", district.id)}
-                className="px-3 py-1 text-xs bg-blue-600 text-white rounded hover:bg-blue-700"
-              >
-                Edit
-              </button>
-            }
-          />
-
-          <button
-            onClick={() => console.log("Delete:", district.id)}
-            className="px-3 py-1 text-xs bg-red-600 text-white rounded hover:bg-red-700"
-          >
-            Delete
-          </button>
-
-          <button
-            onClick={() => {}}
-            className="px-3 py-1 text-xs bg-green-600 text-white rounded hover:bg-green-700"
-          >
-            Active
-          </button>
-        </div>
-      );
+      return <ActionDistDropdown rowData={row.original} />;
     },
   },
 ];

@@ -1,5 +1,4 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import {
   Dialog,
@@ -15,33 +14,69 @@ import { Input } from "@/components/ui/input";
 
 import { Button } from "@/components/ui/button";
 
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 
-import { addStates } from "@/service/apiState";
+import { addStates, updateState } from "@/service/apiState";
+
+import { toast } from "sonner";
+
+type StatesData = {
+  id: number;
+  state: string;
+};
 
 type Props = {
   mode: "create" | "edit";
+  stateData?: StatesData;
   trigger?: React.ReactNode;
 };
 
-export default function AddStateDialog({ mode, trigger }: Props) {
+export default function AddStateDialog({ mode, stateData, trigger }: Props) {
   const [open, setOpen] = useState(false);
-  const [stateName, setStateName] = useState<string>("");
+
+  const [stateName, setStateName] = useState<string | undefined>("");
+
+  const queryClient = useQueryClient();
+
+  useEffect(() => {
+    if (mode === "edit" && stateData) {
+      setStateName(stateData?.state);
+    } else {
+      setStateName("");
+    }
+  }, [stateData, mode, open]);
 
   const mutation = useMutation({
-    mutationFn: (data: any) => addStates(data),
+    mutationFn: (data: { name: string }) => addStates(data),
     onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["states"] });
       console.log("State added successfully");
+      toast("State Created");
       setOpen(false);
       setStateName("");
     },
     onError: (err) => {
+      toast(`something went wrong ! ${err.message}`);
       console.error("Error adding state:", err);
     },
   });
 
+  const updateMutation = useMutation({
+    mutationFn: (data: { id: number; name: string }) =>
+      updateState({ id: data.id, name: data.name }),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["states"] });
+      toast("State Updated");
+      setOpen(false);
+      setStateName("");
+    },
+    onError: (err) => {
+      console.log("the err is", err);
+    },
+  });
+
   const handleSave = () => {
-    if (!stateName.trim()) {
+    if (!stateName || !stateName.trim()) {
       alert("State name is required");
       return;
     }
@@ -50,7 +85,16 @@ export default function AddStateDialog({ mode, trigger }: Props) {
       name: stateName,
     };
 
-    mutation.mutate(paylod);
+    const updatePaylod = {
+      id: Number(stateData?.id),
+      name: stateName,
+    };
+
+    if (mode === "create") {
+      mutation.mutate(paylod);
+    } else {
+      updateMutation.mutate(updatePaylod);
+    }
   };
 
   return (
@@ -89,9 +133,15 @@ export default function AddStateDialog({ mode, trigger }: Props) {
           <Button
             className="bg-zinc-800 text-white hover:bg-zinc-700"
             onClick={handleSave}
-            disabled={mutation.isPending}
+            disabled={mutation.isPending || updateMutation.isPending}
           >
-            {mutation.isPending ? "Saving..." : "Save"}
+            {mode === "create"
+              ? mutation.isPending
+                ? "Saving..."
+                : "Save"
+              : updateMutation.isPending
+              ? "Updating..."
+              : "Update"}
           </Button>
         </div>
       </DialogContent>
